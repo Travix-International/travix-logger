@@ -1,6 +1,6 @@
 # travix-logger
 
-[![Build Status](https://img.shields.io/travis/Travix-International/travix-logger/master.svg)](http://travis-ci.org/Travix-International/travix-logger) [![npm](https://img.shields.io/npm/v/travix-logger.svg)](https://www.npmjs.com/package/travix-logger)
+[![npm](https://img.shields.io/npm/v/travix-logger.svg)](https://www.npmjs.com/package/travix-logger) [![Build Status](https://img.shields.io/travis/Travix-International/travix-logger/master.svg)](http://travis-ci.org/Travix-International/travix-logger) [![Coverage](https://img.shields.io/coveralls/Travix-International/travix-logger.svg)](https://coveralls.io/github/Travix-International/travix-logger)
 
 > Logger library for the browser and node.js
 
