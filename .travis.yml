@@ -9,5 +9,7 @@ script:
   - 'npm run dist'
   - 'npm run cover'
 
+after_success: 'npm run coveralls'
+
 notifications:
   email: false

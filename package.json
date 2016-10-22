@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf lib",
-    "cover": "nyc --require babel-register mocha",
+    "cover": "nyc --reporter=lcov --require babel-register mocha && npm run cover:report",
+    "cover:report": "nyc report",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "dist:lib": "webpack --config ./dist/webpack.config.js",
     "dist:min": "uglifyjs dist/travix-logger.js --output dist/travix-logger.min.js",
     "dist": "npm run dist:lib && npm run dist:min",
@@ -31,6 +33,7 @@
     "babel-preset-travix": "^1.1.0",
     "babel-register": "^6.16.3",
     "chai": "^3.5.0",
+    "coveralls": "^2.11.14",
     "eslint": "^3.7.1",
     "mocha": "^3.1.1",
     "nock": "^8.1.0",
