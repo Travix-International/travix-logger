@@ -32,6 +32,8 @@ describe('createTransport', function () {
     const TestTransport = createTransport({
       name: 'TestTransportNameHere',
 
+      initialize() { },
+
       log(level, message, meta, cb) {
         cb(null);
       }

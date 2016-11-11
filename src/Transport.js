@@ -7,7 +7,5 @@ export default class Transport {
     this.logger = this.options.logger;
   }
 
-  log(level, message, meta, cb) {
-    cb(null);
-  }
+  log(level, message, meta, cb) { }
 }

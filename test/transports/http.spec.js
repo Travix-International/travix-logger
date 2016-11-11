@@ -81,6 +81,73 @@ describe('Transport :: http', function () {
     );
   });
 
+  it('sends data over HTTP only for certain logs', function (done) {
+    const HttpTransport = configureHttpTransport({
+      url: 'http://logs.example.com/submit',
+      method: 'POST',
+      eventKey: 'event',
+      filter(level) {
+        return [
+          'Information',
+          'Error'
+        ].indexOf(level) > -1;
+      }
+    });
+    const httpTransport = new HttpTransport({ logger: true });
+    expect(httpTransport.name).to.equal('HttpTransport');
+
+    nock('http://logs.example.com')
+      .post('/submit', {
+        level: 'Information',
+        event: 'SomeEvent',
+        message: 'Info message',
+        key: 'value'
+      })
+      .reply(201, function (uri, requestBody) {
+        return {
+          ok: true,
+          requestBody
+        };
+      });
+
+    httpTransport.log(
+      'Debug',
+      'SomeEvent',
+      'Debug message...',
+      { key: 'value' },
+      function (err, response) {
+        expect(err).to.equal(null);
+        expect(response).to.be.an('undefined');
+      }
+    );
+
+    httpTransport.log(
+      'Information',
+      'SomeEvent',
+      'Info message',
+      { key: 'value' },
+      function (err, response) {
+        if (err) {
+          return done(err);
+        }
+
+        response.json().then((body) => {
+          expect(body).to.eql({
+            ok: true,
+            requestBody: {
+              level: 'Information',
+              event: 'SomeEvent',
+              message: 'Info message',
+              key: 'value'
+            }
+          });
+
+          done();
+        });
+      }
+    );
+  });
+
   it('sends data over HTTP, with formatted body', function (done) {
     const HttpTransport = configureHttpTransport({
       name: 'MyCustomHttpTransport',
