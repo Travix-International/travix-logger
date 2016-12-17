@@ -1,5 +1,7 @@
 # travix-logger
 
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8123012a7b5a470cba0bd2be357cab89)](https://www.codacy.com/app/rmachado/travix-logger?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Travix-International/travix-logger&amp;utm_campaign=badger)
 [![npm](https://img.shields.io/npm/v/travix-logger.svg)](https://www.npmjs.com/package/travix-logger) [![Build Status](https://img.shields.io/travis/Travix-International/travix-logger/master.svg)](http://travis-ci.org/Travix-International/travix-logger) [![Coverage](https://img.shields.io/coveralls/Travix-International/travix-logger.svg)](https://coveralls.io/github/Travix-International/travix-logger)
 
 > Logger library for the browser and node.js
