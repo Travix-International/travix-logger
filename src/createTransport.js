@@ -23,9 +23,5 @@ export default function createTransport(opts = {}) {
     }
   }
 
-  Object.defineProperty(GeneratedTransport, 'name', {
-    value: name
-  });
-
   return GeneratedTransport;
 }

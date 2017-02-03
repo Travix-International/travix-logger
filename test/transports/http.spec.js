@@ -10,7 +10,6 @@ describe('Transport :: http', function () {
       url: 'http://example.com/'
     });
     expect(HttpTransport).to.be.a('function');
-    expect(HttpTransport.name).to.equal('HttpTransport');
 
     const httpTransport = new HttpTransport();
     expect(httpTransport).to.be.an.instanceof(Transport);
