@@ -80,4 +80,44 @@ describe('Transport :: console', function () {
       }
     ]);
   });
+
+  it('don`t log certain params filtered by log', function () {
+    const logs = [];
+    const fakeConsole = {
+      log(...args) {
+        logs.push({...args});
+      }
+    };
+    const ConsoleTransport = configureConsoleTransport({
+      name: 'MyCustomConsoleTransport',
+      console: fakeConsole,
+      map(level, event, message, meta) {
+        return [level, message, meta]        
+      }
+    });
+    const consoleTransport = new ConsoleTransport();
+    expect(consoleTransport.name).to.equal('MyCustomConsoleTransport');
+
+    consoleTransport.log('Error', 'SomeEvent', 'Error message', { key: 'value' }, () => {});
+    consoleTransport.log('Warning', 'SomeEvent', 'Warn message', { key: 'value' }, () => {});
+    consoleTransport.log('Information', 'SomeEvent', 'Info message', { key: 'value' }, () => {});
+
+    expect(logs).to.eql([
+      {
+        '0': '[Error]',
+        '1': 'Error message',
+        '2': { key: 'value' }
+      },
+      {
+        '0': '[Warning]',
+        '1': 'Warn message',
+        '2': { key: 'value' }
+      },
+      {
+        '0': '[Information]',
+        '1': 'Info message',
+        '2': { key: 'value' }
+      }
+    ]);
+  });
 });

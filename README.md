@@ -347,6 +347,18 @@ function filter(level, event, message, meta) {
 }
 ```
 
+#### `map`
+
+Optional function that changes params of log function. Use in case you want to hide some param in a log.
+
+Example:
+
+```js
+function map(level, event, message, meta) {
+  return [level, message, meta];
+}
+```
+
 #### `name`
 
 Defaults to `ConsoleTransport`.
