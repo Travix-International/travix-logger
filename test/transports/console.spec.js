@@ -81,18 +81,18 @@ describe('Transport :: console', function () {
     ]);
   });
 
-  it('don`t log certain params filtered by log', function () {
+  it('customize logging string', function () {
     const logs = [];
     const fakeConsole = {
-      log(...args) {
-        logs.push({...args});
+      log(log) {
+        logs.push(log);
       }
     };
     const ConsoleTransport = configureConsoleTransport({
       name: 'MyCustomConsoleTransport',
       console: fakeConsole,
       map(level, event, message, meta) {
-        return [level, message, meta]        
+        return `${level} - ${message} - ${JSON.stringify(meta)}`;    
       }
     });
     const consoleTransport = new ConsoleTransport();
@@ -103,21 +103,9 @@ describe('Transport :: console', function () {
     consoleTransport.log('Information', 'SomeEvent', 'Info message', { key: 'value' }, () => {});
 
     expect(logs).to.eql([
-      {
-        '0': '[Error]',
-        '1': 'Error message',
-        '2': { key: 'value' }
-      },
-      {
-        '0': '[Warning]',
-        '1': 'Warn message',
-        '2': { key: 'value' }
-      },
-      {
-        '0': '[Information]',
-        '1': 'Info message',
-        '2': { key: 'value' }
-      }
+      "Error - Error message - {\"key\":\"value\"}",
+      "Warning - Warn message - {\"key\":\"value\"}",
+      "Information - Info message - {\"key\":\"value\"}"
     ]);
   });
 });

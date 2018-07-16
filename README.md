@@ -349,13 +349,13 @@ function filter(level, event, message, meta) {
 
 #### `map`
 
-Optional function that changes params of log function. Use in case you want to hide some param in a log.
+Optional function that can customize log string in a console.
 
 Example:
 
 ```js
 function map(level, event, message, meta) {
-  return [level, message, meta];
+  return `${level} - ${message}`;
 }
 ```
 
