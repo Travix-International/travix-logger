@@ -18,8 +18,8 @@ export default function configureConsoleTransport(options = {}) {
     ? options.filter
     : () => true;
 
-  const map = (typeof options.map !== 'undefined')
-    ? options.map
+  const format = (typeof options.format !== 'undefined')
+    ? options.format
     : null;
 
   const name = (typeof options.name !== 'undefined')
@@ -39,8 +39,8 @@ export default function configureConsoleTransport(options = {}) {
         return cb(null);
       }
 
-      if (map) {
-        useConsole.log(map(level, event, message, meta));
+      if (format) {
+        useConsole.log(format(level, event, message, meta));
       } else {
         useConsole.log(`[${level}]`, event, message, meta);
       }

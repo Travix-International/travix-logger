@@ -91,7 +91,7 @@ describe('Transport :: console', function () {
     const ConsoleTransport = configureConsoleTransport({
       name: 'MyCustomConsoleTransport',
       console: fakeConsole,
-      map(level, event, message, meta) {
+      format(level, event, message, meta) {
         return `${level} - ${message} - ${JSON.stringify(meta)}`;    
       }
     });

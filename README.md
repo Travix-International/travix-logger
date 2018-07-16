@@ -347,14 +347,14 @@ function filter(level, event, message, meta) {
 }
 ```
 
-#### `map`
+#### `format`
 
 Optional function that can customize log string in a console.
 
 Example:
 
 ```js
-function map(level, event, message, meta) {
+function format(level, event, message, meta) {
   return `${level} - ${message}`;
 }
 ```
