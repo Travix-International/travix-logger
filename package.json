@@ -32,7 +32,7 @@
     "babel-eslint": "^7.0.0",
     "babel-preset-travix": "^1.1.0",
     "babel-register": "^6.16.3",
-    "chai": "^3.5.0",
+    "chai": "^4.0.0",
     "coveralls": "^2.11.14",
     "eslint": "^3.10.2",
     "mocha": "^3.1.1",
